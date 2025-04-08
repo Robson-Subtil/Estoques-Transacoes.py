@@ -50,10 +50,10 @@ if uploaded_file is not None:
         if item_selecionado:
             itens_para_mostrar = [item_selecionado]
         else:
-            total_paginas = (len(itens_disponiveis) - 1) // 500 + 1
+            total_paginas = (len(itens_disponiveis) - 1) // 3000 + 1
             pagina = st.selectbox("🔢 Página de Itens", [f"Página {i+1}" for i in range(total_paginas)])
             idx = int(pagina.split()[1]) - 1
-            itens_para_mostrar = itens_disponiveis[idx*500:(idx+1)*500]
+            itens_para_mostrar = itens_disponiveis[idx*3000:(idx+1)*3000]
 
         consolidado = estoque_por_item.set_index('Item')
         consolidado = consolidado.loc[consolidado.index.intersection(itens_para_mostrar)]
