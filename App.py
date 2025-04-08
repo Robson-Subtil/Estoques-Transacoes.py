@@ -7,7 +7,7 @@ pd.set_option("styler.render.max_elements", 400000)
 
 # Configuração da página
 st.set_page_config(page_title="MRP - Estoque e Fluxo", layout="wide")
-st.markdown("### 📦 Visão Consolidada de Estoque + Fluxo de Saída e Entrada")
+st.markdown("### 📦 Visão Consolidada de Estoques\Transações")
 
 # Upload do arquivo Excel
 uploaded_file = st.file_uploader("📁 Faça o upload da Base MRP (Excel)", type=["xlsx"])
@@ -50,10 +50,10 @@ if uploaded_file is not None:
         if item_selecionado:
             itens_para_mostrar = [item_selecionado]
         else:
-            total_paginas = (len(itens_disponiveis) - 1) // 100 + 1
+            total_paginas = (len(itens_disponiveis) - 1) // 500 + 1
             pagina = st.selectbox("🔢 Página de Itens", [f"Página {i+1}" for i in range(total_paginas)])
             idx = int(pagina.split()[1]) - 1
-            itens_para_mostrar = itens_disponiveis[idx*100:(idx+1)*100]
+            itens_para_mostrar = itens_disponiveis[idx*500:(idx+1)*500]
 
         consolidado = estoque_por_item.set_index('Item')
         consolidado = consolidado.loc[consolidado.index.intersection(itens_para_mostrar)]
