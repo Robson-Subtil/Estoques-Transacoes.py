@@ -1,4 +1,4 @@
+streamlit>=1.10.0
 pandas
-streamlit
 openpyxl
-st-aggrid==0.2.3
+st-aggrid==0.2.2
